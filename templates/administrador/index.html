@@ -1,0 +1,139 @@
+{% extends 'administrador/base_a.html' %}
+{% load static %}
+{% load humanize %}
+{% url 'login' as login %}
+<style>
+    tr {
+        border: 2px black solid;
+    }
+</style>
+
+{% block content %}
+
+  <div class="col-12">
+    {% if messages %}
+    {% for message in messages %}
+      <div class="alert mt-4">
+        <button type="button" class="close text-light pt-4" data-dismiss="alert">x</button>
+        <h3 class="text-light pt-4">{{ message }}</h3>
+      </div>
+    {% endfor%}
+  {% endif %}
+  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          {% comment %} /static/img/comandos.jpg   {% endcomment %}
+                        <img style="height: 225px;" src="/media/comandos.jpg" class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                      <div class="carousel-item">
+                          {% comment %} src="/static/img/fortnite.jpg"    {% endcomment %}
+                        <img src="/media/fortnite.jpg" style="height: 225px; width: 300px;" class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                      <div class="carousel-item">
+                          {% comment %} src="/static/img/fondo-de-pantalla-juegos-5.jpeg" {% endcomment %}
+                        <img src="/media/fondo-de-pantalla-juegos-5.jpeg" style="height: 225px; width: 300px;"  class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                  <section>
+                      <div class="container" style="background-color:#1e3049;"><br>
+                        {% comment %}
+                        {% include 'games/snippets/search1.html '%}
+                        {% endcomment %}
+                          {% include 'search.html '%}
+                      </div>
+                  </section>
+
+<br><br>
+                       <h3 style="color: white">Usuarios registrados:</h3>
+<table style="
+    background: white;
+    border-color: steelblue;
+    margin-bottom: 30px;
+    width: 1110px;
+">
+    <thead style="background: #007bff; color: black;">
+        <tr>
+            <th>Nombre de Usuario</th>
+            <th>Nombre real</th>
+            <th>Apellidos</th>
+            <th>Correo</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Contraseña</th>
+            <th>Imagen de Perfil</th>
+            <th>Creado el</th>
+            <th>Updated_at</th>
+            <!-- Agrega más columnas si es necesario -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.nombreusuario }}</td>
+            <td>{{ user.nombre }}</td>
+            <td>{{ user.apellido }}</td>
+            <td>{{ user.correo }}</td>
+            <td>{{ user.fecha_nacimiento }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.imagen_perfil }}</td>
+            <td>{{ user.created_at }}</td>
+            <td>{{ user.updated_at }}</td>
+            <!-- Agrega más columnas si es necesario -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    <br><br>
+    <h3 style="color: white">Videojuegos registrados:</h3>
+<table style="
+    background: white;
+    border-color: steelblue;
+    margin-bottom: 30px;
+    width: 1110px;
+">
+    <thead style="background: #007bff; color: black;">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Categoria</th>
+            <th>Slug</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+            <!-- Agrega más columnas si es necesario -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in games %}
+        <tr>
+            <td>{{ game.id }}</td>
+            <td>{{ game.nombre }}</td>
+            <td>
+                <img src="{{game.imagen.url}}" style="height: 130px;" alt="...">
+            </td>
+            <td> $ {{ game.precio }}</td>
+            <td>{{ game.categoria }}</td>
+            <td>{{ game.slug }}</td>
+            <td><a href="{% url 'editar_juego' game.id %}" style="color: blue;"><img src="/media/lapiz.png" style="width: 30px; height: 30px;"></a></td>
+            <td><a href="{% url 'eliminar_juego' game.id %}" style="color: red;"><img src="/media/borrar.png" style="width: 30px; height: 30px;"></a></td>
+            <!-- Agrega más columnas si es necesario -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock%}

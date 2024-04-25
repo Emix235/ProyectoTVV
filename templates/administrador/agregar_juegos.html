@@ -1,0 +1,161 @@
+{% extends 'administrador/base_a.html' %}
+{% load static %}
+{% load humanize %}
+{% url 'login' as login %}
+
+{% block content %}
+  <div class="col-12">
+    {% if messages %}
+    {% for message in messages %}
+      <div class="alert mt-4">
+        <button type="button" class="close text-light pt-4" data-dismiss="alert">x</button>
+        <h3 class="text-light pt-4">{{ message }}</h3>
+      </div>
+    {% endfor%}
+  {% endif %}
+  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          {% comment %} /static/img/comandos.jpg   {% endcomment %}
+                        <img style="height: 225px;" src="/media/comandos.jpg" class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                      <div class="carousel-item">
+                          {% comment %} src="/static/img/fortnite.jpg"    {% endcomment %}
+                        <img src="/media/fortnite.jpg" style="height: 225px; width: 300px;" class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                      <div class="carousel-item">
+                          {% comment %} src="/static/img/fondo-de-pantalla-juegos-5.jpeg" {% endcomment %}
+                        <img src="/media/fondo-de-pantalla-juegos-5.jpeg" style="height: 225px; width: 300px;" class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                  <section>
+                      <div class="container" style="background-color:#1e3049;"><br>
+                          {% comment %}
+                        {% include 'games/snippets/search1.html ' %}
+                      {% endcomment %}
+                          {% include 'search.html '%}
+                      </div>
+                  </section>
+
+<br><br>
+<h2 style="color: white; font-size: xxx-large; margin-bottom: 30px;">Agregar Juego</h2>
+
+<form method="post" enctype="multipart/form-data" 
+      style="
+    display: flex;
+    color: white;
+    width: 700px;
+    margin: 0 auto;
+    height: 1010px;
+    border-radius: 25px;
+    background: #004a6d;
+    font-family: sans-serif;
+    padding: 30px 50px;
+    box-shadow: 0 15px 0 #fff, inset 0 -15px 0 rgba(255, 255, 255, 0.25), 0 45px 0 rgba(0, 0, 0, 0.15);
+    margin-bottom: 50px;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer;">Agregar Juego</button>
+</form>
+
+
+    {% comment %}
+ <form method="post" enctype="multipart/form-data" style="
+    width: 700px; height: 600px;
+    margin: 0 auto;
+    background: red;
+    font-family: sans-serif;
+    color: black;
+    padding: 30px 50px;
+    /* border: yellowgreen; */
+    /* border: 18px; */
+    box-shadow: 0 15px 0 #fff, inset 0 -15px 0 rgba(255,255,255,0.25), 0 45px 0 rgba(0,0,0,0.15);
+    margin-bottom: 50px;
+" >
+    {% csrf_token %}
+
+     <div style="margin-bottom: 10px;">
+        {{ form.nombre.label_tag }}
+        {{ form.nombre }}
+    </div>
+    <div style="margin-bottom: 10px;">
+        {{ form.imagen.label_tag }}
+        {{ form.imagen }}
+    </div>
+    <div style="margin-bottom: 10px;">
+        {{ form.descripcion.label_tag }}
+        {{ form.descripcion }}
+    </div>
+    <div style="margin-bottom: 10px;">
+        {{ form.precio.label_tag }}
+        {{ form.precio }}
+    </div>
+    <div style="margin-bottom: 10px;">
+        {{ form.categoria.label_tag }}
+        {{ form.categoria }}
+    </div>
+    <div style="margin-bottom: 10px;">
+        {{ form.existencia.label_tag }}
+        {{ form.existencia }}
+    </div>
+    {% endcomment %}
+
+<br><br>
+    <h3 style="color: white">Videojuegos registrados:</h3>
+<table style="
+    background: white;
+    border-color: steelblue;
+    margin-bottom: 30px;
+    width: 1110px;
+">
+    <thead style="background: #007bff; color: black;">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Categoria</th>
+            <th>Slug</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+            <!-- Agrega más columnas si es necesario -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in games %}
+        <tr>
+            <td>{{ game.id }}</td>
+            <td>{{ game.nombre }}</td>
+            <td>
+                <img src="{{game.imagen.url}}" style="height: 130px;" alt="...">
+            </td>
+            <td> $ {{ game.precio }}</td>
+            <td>{{ game.categoria }}</td>
+            <td>{{ game.slug }}</td>
+            <!-- Agrega más columnas si es necesario -->
+            <td><a href="{% url 'editar_juego' game.id %}" style="color: blue;"><img src="/media/lapiz.png" style="width: 30px; height: 30px;"></a></td>
+            <td><a href="{% url 'eliminar_juego' game.id %}" style="color: red;"><img src="/media/borrar.png" style="width: 30px; height: 30px;"></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock%}

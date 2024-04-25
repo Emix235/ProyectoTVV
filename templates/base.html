@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>TVV</title>
+<style>
+body {
+        background-color: #070725;
+        /*font-family: 'Press Start 2P', cursive;*/
+        text-align: center;
+        /*padding-top: 20px;
+    }
+.search-section {
+        flex: 1;
+        padding: 20px;
+        margin: 10px;
+        background-image: url("{% static 'img/portada.jpg' %}"); /* Cambia 'tu_imagen.jpg' por la ruta de tu imagen */
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+    }
+    .menu-buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .menu{
+        background-color: #00f;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .menu-button:last-child {
+        margin-right: 0;
+    }
+    .menu-button:hover {
+        background-color: #0056b3;
+    }
+    .menu-item {
+        flex: 1;
+        padding: 20px;
+        margin: 10px;
+        background-color: rgba(0, 0, 26, 0.8); /* Fondo semi-transparente */
+        border-radius: 8px;
+        text-align: left;
+    }
+    .menu-item h2 {
+        margin-top: 0;
+    }
+    .menu-item ul {
+        list-style: none;
+        padding: 0;
+    }
+    .menu-item ul li {
+        margin-bottom: 5px;
+    }
+    .menu-item ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .offers-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+    .offer-controls {
+        margin-top: 20px;
+    }
+    .control-button {
+        background-color: #00f;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .control-button:hover {
+        background-color: #0056b3;
+    }
+    .offer-item {
+        width: 300px;
+        margin: 10px;
+        text-align: center;
+        display: none;
+    }
+    .offer-item.active {
+        display: block;
+    }
+    .offer-item img {
+        width: 100%;
+        height: 200px; /* Establece la altura deseada para todas las imágenes */
+        border-radius: 8px;
+    }
+    .offer-description {
+        margin-top: 10px;
+    }
+    /* styles.css */
+
+/* Estilo para todos los inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Asegura que el padding y el borde no aumenten el tamaño total del input */
+}
+
+/* Estilo específico para inputs de tipo file */
+input[type="file"] {
+    border: none; /* Elimina el borde para inputs de tipo file */
+    background: linear-gradient(45deg, black, transparent);
+    color: white;
+    font-size: xx-large;
+}
+
+/* Estilo para los botones */
+button[type="submit"] {
+    background-color: #04386f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    width: 100%;
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+
+/* Estilo para los mensajes de éxito */
+.success-message {
+    color: green;
+    margin-top: 5px;
+}
+label {
+    /*display: block; /* Para que cada etiqueta esté en su propia línea */
+    margin-bottom: 5px;
+    font-weight: bold; /* Ajusta el peso de la fuente */
+    color: white;
+    font-family: Arial;
+    font-size: large;
+}
+
+/* Estilo específico para las etiquetas en los formularios */
+.form-label {
+    color: #333; /* Color de texto */
+}
+</style>
+</head>
+<body style=" ">
+  {% include 'navbar.html' %}
+  {%  comment %}
+  class="login-container"
+  {% endcomment %}
+  <div  class="container">
+    <div class="row">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+  </div>
+</body>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+{% include 'footer.html'%}
+
+

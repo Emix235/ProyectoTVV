@@ -1,0 +1,61 @@
+{% extends 'usuario/base_u.html' %}
+{% url 'index2u' as index2u %}
+{% load humanize %}
+
+{% block content %}
+    {% if cart.games.exists %}
+    <div class="col-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"><p class="text-light">Num#</p></th>
+                    <th scope="col"><p class="text-light">ID USUARIO</p></th>
+                    <th scope="col"><p class="text-light"></p></th>
+                    <th scope="col"><p class="text-light">Videojuegos</p></th>
+                    <th scope="col"><p class="text-light">Cantidad</p></th>
+                    <th scope="col"><p class="text-light">Precio</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cg in cart.games_related %}
+                    {% with game=cg.game %}
+                        <tr>
+                            <td><p class="text-light text-center">{{ forloop.counter }}</p></td>
+                            <td><p class="text-light text-center">{{ cart.user.apellido }}</p></td>
+                            <td>
+                                <img src="{{ game.imagen.url }}" alt="" width="200" height="200">
+                            </td>
+                            <td>
+                                <a href="{% url 'juego:juego2' game.slug %}">
+                                    <p class="text-light text-center">{{ game.nombre }}</p>
+                                </a>
+                                {% include 'carts/snippets/remove.html' %}
+                            </td>
+                            <td><p class="text-light text-center">{{ cg.quantity }}</p></td>
+                            <td><span class="font-weight-bold text-danger">{{ game.precio | intcomma }}</span></td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="font-weight-bold">
+                    Total ({{ cart.games.count }}) :<span class="text-danger">$ {{ cart.total | intcomma }}</span>
+                </div>
+                <div class="mt-2">
+                    <a href="#" class="btn btn-warning">Realizar Pago</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col">
+        <h4 class="text-light mt-4">Tu carrito está vacío</h4>
+        <br><br>
+        <a href='{% url 'index2u' %}'>Ir al inicio</a>
+    </div>
+    {% endif %}
+{% endblock %}

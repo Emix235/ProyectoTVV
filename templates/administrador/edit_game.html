@@ -1,0 +1,72 @@
+{% extends 'administrador/base_a.html' %}
+{% load static %}
+{% load humanize %}
+{% url 'login' as login %}
+
+{% block content %}
+  <div class="col-12">
+    {% if messages %}
+    {% for message in messages %}
+      <div class="alert mt-4">
+        <button type="button" class="close text-light pt-4" data-dismiss="alert">x</button>
+        <h3 class="text-light pt-4">{{ message }}</h3>
+      </div>
+    {% endfor%}
+  {% endif %}
+  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          {% comment %} /static/img/comandos.jpg   {% endcomment %}
+                        <img style="height: 225px;" src="/media/comandos.jpg" class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                      <div class="carousel-item">
+                          {% comment %} src="/static/img/fortnite.jpg"    {% endcomment %}
+                        <img src="/media/fortnite.jpg" style="height: 225px; width: 300px;" class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                      <div class="carousel-item">
+                          {% comment %} src="/static/img/fondo-de-pantalla-juegos-5.jpeg" {% endcomment %}
+                        <img src="/media/fondo-de-pantalla-juegos-5.jpeg" style="height: 225px; width: 300px;" class="d-block w-100" alt="..." class="img-fluid">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                  <section>
+                      <div class="container" style="background-color:#1e3049;"><br>
+                          {% comment %}
+                        {% include 'games/snippets/search1.html ' %}
+                      {% endcomment %}
+                          {% include 'search.html '%}
+                      </div>
+                  </section>
+
+<br><br>
+
+<h3 style="color: white;">Editar Juego</h3>
+<form method="post" enctype="multipart/form-data"
+style="
+    background: teal;
+    padding: 30px 30px;
+    border: 12px #0a2d61 solid;
+    font-family: inherit;
+    margin-bottom: 50px;
+    width: 1110px;
+    height: 1050px;
+    margin-top: 30px;
+">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+</form>
+
+{% endblock%}

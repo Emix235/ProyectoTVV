@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<body class="text-center registro" style="background-color:#19273a;">
+<div class="container"><br>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert">
+        <button type="button" class="close text-light" data-dismiss="alert">x</button>
+        <h3 class="text-light">{{ message }}</h3>
+      </div>
+    {% endfor%}
+  {% endif %}
+  <div class="row justify-content-center" style="    
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+    padding: 30px 30px;
+    margin-bottom: 50px;">
+    <form method="post" class="form-signin" style="width: 400px;">
+    {% csrf_token %}
+        <img class="mb-4" src="/media/boton-de-inicio.png" alt="" width="150" height="150">
+        <h1 class="h4 mb-3 font-weight-normal" style="color: whitesmoke;">INICIAR SESIÓN ADMINISTRADOR</h1>
+        {{ form.non_field_errors }}
+    <div class="form-group">
+        <label for="id_nombre_usuario" >NOMBRE DE USUARIO</label>
+        {{ form.nombre_usuario }}
+        {{ form.nombre_usuario.errors }}
+    </div>
+    <div class="form-group">
+        <label for="id_matricula" >MATRICULA</label>
+        {{ form.matricula }}
+        {{ form.matricula.errors }}
+    </div>
+        <div class="checkbox mb-3">
+        <label style="color: whitesmoke;">
+          <input type="checkbox" value="remember-me"> Recordar
+        </label>
+      </div>
+    <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+</form>
+        <a href="{% url 'registro_administrador' %}">Registrarse como administrador</a>
+        <a href="{% url 'login_usuario' %}">Iniciar sesión como usuario</a>
+
+  </div>
+</div>
+
+{% endblock %}
+

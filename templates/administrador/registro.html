@@ -1,0 +1,60 @@
+{% extends 'administrador/base_a.html' %}
+{% load static %}
+
+{% block content %}
+<body class="text-center registro" style="background-color:#19273a;">
+
+<div class="container"><br><br><br><br>
+  <div class="row justify-content-center">
+      <!-- registro_administrador.html -->
+      
+<form method="post" enctype="multipart/form-data" style="
+    padding: 45px 30px;
+    margin-bottom: 90px;
+    background: #1a144b;
+    border-radius: 15px;
+    flex: auto;">
+    {% csrf_token %}
+    <h1 class="h4 mb-3 font-weight-normal" style="    color: whitesmoke;
+    font-size: x-large;">REGISTRAR NUEVO ADMINISTRADOR</h1>
+    <div class="form-group">
+        <label for="id_nombre">Nombre:</label>
+        {{ form.nombre }}
+    </div>
+    <div class="form-group">
+        <label for="id_apellidos">Apellidos:</label>
+        {{ form.apellidos }}
+    </div>
+    <div class="form-group">
+        <label for="id_edad">Edad:</label>
+        {{ form.edad }}
+    </div>
+    <div class="form-group">
+        <label for="id_genero">Género:</label>
+        {{ form.genero }}
+    </div>
+    <div class="form-group">
+        <label for="id_nombre_usuario">Nombre de usuario:</label>
+        {{ form.nombre_usuario }}
+    </div>
+    <div class="form-group">
+        <label for="id_matricula">Matrícula:</label>
+        {{ form.matricula }}
+    </div>
+    <div class="form-group">
+        <label for="id_pais_origen">País de origen:</label>
+        {{ form.pais_origen }}
+    </div>
+    <div class="form-group">
+        <label for="id_imagen_perfil">Imagen de perfil:</label>
+        {{ form.imagen_perfil }}
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+
+  </div>
+</div>
+</body>
+
+{% endblock %}
+

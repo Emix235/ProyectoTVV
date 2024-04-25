@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Juego</title>
+</head>
+<body>
+
+<h2>Agregar Juego</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agregar Juego</button>
+</form>
+
+</body>
+</html>

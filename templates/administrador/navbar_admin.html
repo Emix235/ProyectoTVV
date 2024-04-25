@@ -1,0 +1,123 @@
+{% url 'login_usuario' as login %}
+{% url 'login_administrador' as loginadmin %}
+{% url 'registro_usuario' as registro %}
+{% url 'logout_usuario' as logout %}
+{% url 'carts:cart' as cart %}
+{% url 'agregar_juego' as agregar_juego %}
+{% url 'index2a' as index2a %}
+{% url 'index' as index %}
+<style>
+    .search-section {
+        flex: 1;
+        padding: 20px;
+        margin: 10px;
+        background-image: url('/media/portada.jpg'); /* Cambia 'tu_imagen.jpg' por la ruta de tu imagen */
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+    }
+    .menu-buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .menu-button {
+        background: #00f;
+        /*color: #fff;*/
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        list-style: none;
+    }
+    .menu-button-text{
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    }
+    .menu-button:hover {
+    background-color: #2853f5; /* Cambia el color de fondo cuando el cursor está sobre el botón */
+        text-decoration: none;
+    color: white;
+    }
+    .menu-button-text:hover {
+        text-decoration: none;
+        color: white; /* Asegura que el color del texto siga siendo blanco incluso cuando se pasa el cursor sobre él */
+        font-size: large;
+    }
+    .title{
+        padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 15px;
+    background: #0a0a2a;
+    color: white;
+    font-size: 30px;
+    margin-block: 13px;
+    font-family: monospace;
+    }
+</style>
+
+{% comment %}
+class="navbar navbar-expand-md bg-dark navbar-dark"
+{%  endcomment %}
+
+<nav class="menu-container">
+<div class="search-section">
+<!-- navbar-brand -->
+    <a href="{{index2a}}" class="title">Tienda de Videojuegos Virtual</a>
+    <!--TVV Shop-->
+
+{% comment %}
+    <button class="navbar-toggler navbar-toggler-right" type="button" name="button"
+        data-toggle="collapse" data-target="#navb">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+{%  endcomment %}
+
+    <div class="menu-buttons">
+    <div id="navb" class="navbar-collapse collapse-hide">
+
+    <!-- navbar-nav  -->
+        <ul class="menu-buttons" style="margin-top: 20px;">
+        {% comment %}
+        nav-item
+        {% endcomment %}
+            
+                <li class="menu-button" style="background: firebrick">
+                <!--navbar-item-->
+                    <a class="menu-button-text" href="{{logout}}" class="menu-button-text">SALIR</a>
+                </li>
+                <li class="menu-button" style="background: firebrick">
+                <!--navbar-item-->
+                    <a class="menu-button-text" href="{% url 'agregar_juego' %}" class="menu-button-text">INVENTARIO</a>
+                </li>
+        </ul>
+        {% comment %}
+        nav navbar-nav ml-auto
+        <ul class="menu-buttons">
+            {% if user.is_authenticated %}
+                <li class="navbar-item">
+                <!--navbar-item-->
+                    <a href="{{logout}}" class="menu-button-text">SALIR</a>
+                </li>
+            {% else %}
+                <!-- navbar-item -->
+                <li class="menu-button {% if request.path == login %}active{% endif %}">
+                    <a href="{{login}}" class="menu-button-text">INGRESAR</a>
+                <!--nav-link-->
+                </li>
+                <!-- navbar-item -->
+                <li class="menu-button {% if request.path == registro %}active{% endif %}">
+                    <a href="{{registro}}" class="menu-button-text">REGISTRO</a>
+                <!--nav-link-->
+                </li>
+            {% endif %}
+        </ul>
+        {%  endcomment %}
+    </div>
+    </div>
+</div>
+</nav>
